@@ -1,0 +1,8 @@
+.nav {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.nav-item {
+  padding: 6px 12px;
+}
