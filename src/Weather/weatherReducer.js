@@ -13,7 +13,7 @@ export default (state = {
   switch (action.type) {
     case FETCH_WEATHER:
     case RECEIVE_WEATHER:
-      return {...state, weather: [ action.weather ]}
+      return {...state, weather: action.weather }
     default: 
       return state;
   }

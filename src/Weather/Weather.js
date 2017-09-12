@@ -4,13 +4,13 @@ import { withRouter } from 'react-router-dom'
 
 import { receiveWeather } from './weatherActionCreators'
 
-import CityLink from '../CityLink/CityLink'
+import CityLink from '../City/City'
 
 import './Weather.css'
 
 class Weather extends Component {
   state = {
-    cities: [  ]
+    cities: []
   }
 
   componentDidMount() {
@@ -27,17 +27,29 @@ class Weather extends Component {
   }
 
   render() {
-    const { cities } = this.props;
+    const { cities, weather } = this.props;
 
     return (
       <section className="weather-app">
-        {cities && cities.map(city => <CityLink {...city} key={city.id} />)}
+        <ul>
+        {cities && cities.map(city => {
+            const weatherByCity = weather.find(weatherItem => {
+              return weatherItem.name === city.name
+            })
+
+            return <CityLink {...city} weather={weatherByCity} key={city.id} />
+          })
+        }
+        </ul>
       </section>
     )
   }
 }
 
 export default withRouter(connect(
-  state => ({ cities: state.weather.cities }),
+  state => ({
+    cities: state.weather.cities,
+    weather: state.weather.weather
+  }),
   { receiveWeather }
 )(Weather))

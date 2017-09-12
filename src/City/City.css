@@ -1,0 +1,14 @@
+.city {
+  padding: 6px 0;
+}
+
+.city-link {
+  color: white;
+  background-color: black;
+}
+
+.city-link:hover {
+  color: black;
+  background-color: transparent;
+  cursor: pointer;
+}
